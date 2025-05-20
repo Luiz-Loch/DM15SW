@@ -1,0 +1,34 @@
+- `./app`:
+    - `(auth)`:
+        - `_layout.jsx`
+            - [ ] status bar no modo claro
+            - [ ] status bar no modo escuro
+            - [ ] opção de voltar página na tela de `login`
+            - [ ] opção de voltar página na tela de `cadastro`
+        - `login.jsx`
+            - [ ] modo claro
+            - [ ] modo escuro
+        - `register.jsx`
+            - [ ] modo claro
+            - [ ] modo escuro
+    - `(tabs)`:
+        - `_layout.jsx`
+            - [ ] abas na parte inferior
+            - [ ] modo claro
+            - [ ] modo escuro
+        - `calendar.jsx`
+            - [ ] modo claro 
+            - [ ] modo escuro
+        - `index.jsx`
+            - [ ] modo claro
+            - [ ] modo escuro
+        - `profile.jsx`
+            - [ ] modo claro
+            - [ ] modo escuro
+    - `_layout.jsx`
+        - [ ]
+    - `index.jsx`
+        - [ ] modo escuro
+        - [ ] modo claro
+        - [ ] link de `login`
+        - [ ] link de `cadastro`
