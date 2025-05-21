@@ -1,34 +1,55 @@
 - `./app`:
     - `(auth)`:
         - `_layout.jsx`
-            - [ ] status bar no modo claro
-            - [ ] status bar no modo escuro
-            - [ ] opção de voltar página na tela de `login`
-            - [ ] opção de voltar página na tela de `cadastro`
+            - [x] status bar no modo claro
+            - [x] status bar no modo escuro
+            - [x] opção de voltar página na tela de `login`
+            - [x] opção de voltar página na tela de `cadastro`
+            - [x] logs
         - `login.jsx`
-            - [ ] modo claro
-            - [ ] modo escuro
+            - [x] modo claro
+            - [x] modo escuro
+            - [x] logs
         - `register.jsx`
-            - [ ] modo claro
-            - [ ] modo escuro
+            - [x] modo claro
+            - [x] modo escuro
+            - [x] logs
     - `(tabs)`:
         - `_layout.jsx`
-            - [ ] abas na parte inferior
-            - [ ] modo claro
-            - [ ] modo escuro
+            - [ ] abas na parte inferior;
+            - [ ] modo claro;
+            - [ ] modo escuro;
+            - [ ] logs;
         - `calendar.jsx`
-            - [ ] modo claro 
-            - [ ] modo escuro
-        - `index.jsx`
-            - [ ] modo claro
-            - [ ] modo escuro
+            - [ ] modo claro;
+            - [ ] modo escuro;
+            - [ ] logs;
+        - `plants.jsx`
+            - [ ] modo claro;
+            - [ ] modo escuro;
+            - [ ] logs;
         - `profile.jsx`
-            - [ ] modo claro
-            - [ ] modo escuro
+            - [ ] modo claro;
+            - [ ] modo escuro;
+            - [ ] logs;
     - `_layout.jsx`
-        - [ ]
+        - [x] voltar de `login`;
+        - [x] voltar de `cadastro`;
+        - [x] logs;
     - `index.jsx`
-        - [ ] modo escuro
-        - [ ] modo claro
-        - [ ] link de `login`
-        - [ ] link de `cadastro`
+        - [x] modo escuro;
+        - [x] modo claro;
+        - [x] link de `login`;
+        - [x] link de `cadastro`;
+        - [x] logs;
+- `./scr`:
+    - `contexts`:
+        - `PlantsContext.js`:
+            - [ ] logs;
+        - `UserContext.js`:
+            - [ ] logs;
+    - `hooks`:
+        - `usePlants.js`
+            - [x] logs;
+        - `useUser.js`
+            - [x] logs;

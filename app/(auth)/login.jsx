@@ -1,9 +1,13 @@
 import { useState } from 'react';
-import { Button, Keyboard, StyleSheet, Text, TextInput, TouchableWithoutFeedback, useColorScheme, View } from 'react-native';
-import { Colors } from '../../constants/Colors';
-import { useUser } from '../../hooks/useUser';
+import { Button, Keyboard, SafeAreaView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, useColorScheme, View } from 'react-native';
+import { Colors } from '../../scr/constants/Colors';
+import { useUser } from '../../scr/hooks/useUser';
+import { logger } from '../../scr/utils/logger';
 
 export default function Login() {
+    logger.info('in file: ./app/(auth)/login.jsx');
+    logger.log('in function: Login');
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
@@ -12,45 +16,62 @@ export default function Login() {
     const theme = useColorScheme();
     const colorPalette = Colors[theme || 'light'];
 
+    logger.info('Theme is: ', theme);
+    logger.log('Login screen rendered');
+    logger.log('Current user is: ', user);
+
     const handleSubmit = async () => {
+        logger.log('In function: Login.handleSubmit');
+        logger.log('Login submit triggered with email:', email);
         setError(null);
 
+        logger.info('Attempting login with email:', email);
         try {
-            await login(email, password)
+            logger.log('Calling login()');
+            await login(email, password);
+            logger.info('Login successful');
+            logger.log('Current user is: ', user);
         } catch (error) {
             setError(error.message)
+            logger.error('Login failed:', error.message);
+            logger.debug('Login error object:', error);
         }
     }
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={[styles.container, { backgroundColor: colorPalette.background }]}>
-                <Text style={[styles.title, { color: colorPalette.text }]}>Login</Text>
+        <SafeAreaView style={[{ flex: 1 }, { backgroundColor: colorPalette.background }]}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={[styles.container, { backgroundColor: colorPalette.background }]}>
+                    <Text style={[styles.title, { color: colorPalette.text }]}>Login</Text>
 
-                <TextInput
-                    style={[styles.input, { backgroundColor: colorPalette.inputBackground, color: colorPalette.text }]}
-                    placeholder="Email"
-                    placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                />
+                    <TextInput
+                        style={[styles.input, { backgroundColor: colorPalette.inputBackground, color: colorPalette.text }]}
+                        placeholder="Email"
+                        placeholderTextColor={colorPalette.placeholder}
+                        value={email}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                    />
 
-                <TextInput
-                    style={[styles.input, { backgroundColor: colorPalette.inputBackground, color: colorPalette.text }]}
-                    placeholder="Senha"
-                    placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry
-                />
+                    <TextInput
+                        style={[styles.input, { backgroundColor: colorPalette.inputBackground, color: colorPalette.text }]}
+                        placeholder="Senha"
+                        placeholderTextColor={colorPalette.placeholder}
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry
+                    />
 
-                {error && <Text style={styles.error}>{error}</Text>}
+                    {error && <Text style={styles.error}>{error}</Text>}
 
-                <Button title="Entrar" onPress={handleSubmit} />
-            </View>
-        </TouchableWithoutFeedback>
+                    <Button
+                        title="Entrar"
+                        onPress={handleSubmit}
+                    />
+                </View>
+            </TouchableWithoutFeedback>
+        </SafeAreaView>
     );
 }
 

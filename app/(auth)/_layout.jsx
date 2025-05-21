@@ -1,11 +1,20 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router, Stack } from 'expo-router';
 import { StatusBar, useColorScheme } from "react-native";
-import { Colors } from '../../constants/Colors';
+import { Colors } from '../../scr/constants/Colors';
+import { logger } from '../../scr/utils/logger';
 
 export default function AuthLayout() {
+    logger.info('in file: ./app/(auth)/_layout.jsx');
+    logger.log('in function: AuthLayout');
+
     const theme = useColorScheme();
     const colorPalette = Colors[theme || 'light'];
+
+    logger.info('Theme is: ', theme);
+    logger.log('AuthLayout screen rendered');
+    logger.log('Auth stack initialized with login and register screens');
+
     return (
         <>
             <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
@@ -27,7 +36,10 @@ export default function AuthLayout() {
                                 size={24}
                                 color={colorPalette.text}
                                 style={{ marginLeft: 16 }}
-                                onPress={() => router.back()}
+                                onPress={() => {
+                                    logger.log('Back button pressed in login screen');
+                                    router.back()
+                                }}
                             />
                         },
                     }}
@@ -42,7 +54,10 @@ export default function AuthLayout() {
                                 size={24}
                                 color={colorPalette.text}
                                 style={{ marginLeft: 16 }}
-                                onPress={() => router.back()}
+                                onPress={() => {
+                                    logger.log('Back button pressed in register screen');
+                                    router.back()
+                                }}
                             />
                         },
                     }}

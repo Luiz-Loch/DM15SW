@@ -1,6 +1,6 @@
 import { SafeAreaView, Text } from "react-native";
 
-export default function Index() {
+export default function Plants() {
   return (
     <SafeAreaView
       style={{
@@ -9,7 +9,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Text>Edit `app/(tabs)/plants.jsx to edit this screen.</Text>
     </SafeAreaView>
   );
 }

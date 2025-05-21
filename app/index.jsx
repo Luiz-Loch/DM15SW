@@ -1,10 +1,17 @@
 import { router } from 'expo-router';
 import { Pressable, SafeAreaView, StyleSheet, Text, useColorScheme } from 'react-native';
-import { Colors } from '../constants/Colors';
+import { Colors } from '../scr/constants/Colors';
+import { logger } from '../scr/utils/logger';
 
 export default function Home() {
+    logger.info('in file: ./app/index.jsx');
+    logger.info('in function: Home');
+
     const theme = useColorScheme(); // 'light' ou 'dark'
     const colorPalette = Colors[theme || 'light'];
+    
+    logger.info('Theme is: ', theme);
+    logger.log('Home screen rendered');
 
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: colorPalette.background }]}>
@@ -13,7 +20,10 @@ export default function Home() {
             </Text>
 
             <Pressable
-                onPress={() => router.push('/(auth)/login')}
+                onPress={() => {
+                    logger.log('Navigating to /(auth)/login');
+                    router.push('/(auth)/login')
+                }}
                 style={({ pressed }) => [
                     styles.button,
                     { backgroundColor: colorPalette.primary },
@@ -26,7 +36,9 @@ export default function Home() {
             </Pressable>
 
             <Pressable
-                onPress={() => router.push('/(auth)/register')}
+                onPress={() => {
+                    logger.log('Navigating to /(auth)/register');
+                    router.push('/(auth)/register')}}
                 style={({ pressed }) => [
                     styles.button,
                     { backgroundColor: colorPalette.secondary },

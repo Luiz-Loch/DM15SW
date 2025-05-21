@@ -8,6 +8,7 @@ export const Colors = {
     secondary: '#8BC34A',
     buttonText: '#FFFFFF',
     inputBackground: '#FFFFFF',
+    placeholderTextColor: "#666",
   },
   dark: {
     background: '#121212',
@@ -16,5 +17,6 @@ export const Colors = {
     secondary: '#A5D6A7',
     buttonText: '#000000',
     inputBackground: '#1E1E1E',
+    placeholderTextColor: "#AAA",
   },
 };
