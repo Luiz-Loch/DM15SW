@@ -16,10 +16,10 @@
             - [x] logs
     - `(tabs)`:
         - `_layout.jsx`
-            - [ ] abas na parte inferior;
-            - [ ] modo claro;
-            - [ ] modo escuro;
-            - [ ] logs;
+            - [x] abas na parte inferior;
+            - [x] modo claro;
+            - [x] modo escuro;
+            - [x] logs;
         - `calendar.jsx`
             - [ ] modo claro;
             - [ ] modo escuro;
@@ -29,9 +29,10 @@
             - [ ] modo escuro;
             - [ ] logs;
         - `profile.jsx`
-            - [ ] modo claro;
-            - [ ] modo escuro;
-            - [ ] logs;
+            - [x] modo claro;
+            - [x] modo escuro;
+            - [x] logs;
+            - [ ] logout funcional;
     - `_layout.jsx`
         - [x] voltar de `login`;
         - [x] voltar de `cadastro`;

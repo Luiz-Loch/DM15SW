@@ -6,9 +6,6 @@ import { logger } from '../../scr/utils/logger';
 
 
 export default function Register() {
-    logger.info('in file: ./app/(auth)/register.jsx');
-    logger.log('in function: Register');
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -18,10 +15,14 @@ export default function Register() {
     const theme = useColorScheme();
     const colorPalette = Colors[theme || 'light'];
 
-    logger.info('Theme is: ', theme);
-    logger.log('Register screen rendered');
-    logger.log('Current user is: ', user);
-
+    // Inicial log when mounting the screen
+    useEffect(() => {
+        logger.info('in file: ./app/(auth)/register.jsx');
+        logger.log('in function: Register');
+        logger.info('Theme is: ', theme);
+        logger.log('Register screen mounted');
+        logger.log('Current user is: ', user);
+    }, []);
 
     const handleSubmit = async () => {
         logger.log('In function: Register.handleSubmit');

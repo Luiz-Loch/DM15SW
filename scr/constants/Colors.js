@@ -9,6 +9,10 @@ export const Colors = {
     buttonText: '#FFFFFF',
     inputBackground: '#FFFFFF',
     placeholderTextColor: "#666",
+    tabBarBackground: '#fff', 
+    tabBarBorderTopColor: '#ccc',
+    activeTintColor: 'green',
+    inactiveTintColor: '#666',
   },
   dark: {
     background: '#121212',
@@ -18,5 +22,9 @@ export const Colors = {
     buttonText: '#000000',
     inputBackground: '#1E1E1E',
     placeholderTextColor: "#AAA",
+    tabBarBackground: '#000',
+    tabBarBorderTopColor: '#222',
+    activeTintColor: '#90ee90',
+    inactiveTintColor: '#aaa',
   },
 };

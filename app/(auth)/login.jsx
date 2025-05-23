@@ -1,13 +1,11 @@
-import { useState } from 'react';
+import { router } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { Button, Keyboard, SafeAreaView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, useColorScheme, View } from 'react-native';
 import { Colors } from '../../scr/constants/Colors';
 import { useUser } from '../../scr/hooks/useUser';
 import { logger } from '../../scr/utils/logger';
 
 export default function Login() {
-    logger.info('in file: ./app/(auth)/login.jsx');
-    logger.log('in function: Login');
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
@@ -16,9 +14,14 @@ export default function Login() {
     const theme = useColorScheme();
     const colorPalette = Colors[theme || 'light'];
 
-    logger.info('Theme is: ', theme);
-    logger.log('Login screen rendered');
-    logger.log('Current user is: ', user);
+    // Inicial log when mounting the screen
+    useEffect(() => {
+        logger.info('in file: ./app/(auth)/login.jsx');
+        logger.log('in function: Login');
+        logger.info('Theme is: ', theme);
+        logger.log('Login screen mounted');
+        logger.log('Current user is: ', user);
+    }, []);
 
     const handleSubmit = async () => {
         logger.log('In function: Login.handleSubmit');
@@ -31,6 +34,7 @@ export default function Login() {
             await login(email, password);
             logger.info('Login successful');
             logger.log('Current user is: ', user);
+            router.replace('/(tabs)/plants');
         } catch (error) {
             setError(error.message)
             logger.error('Login failed:', error.message);

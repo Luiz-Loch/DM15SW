@@ -12,7 +12,7 @@ export function UserProvider({ children }) {
     const [authChecked, setAuthChecked] = useState(false)
 
     async function login(email, password) {
-        logger.log("in function UserProvider.login() with e-mail: ", email);
+        logger.log("in function UserProvider.login() with e-mail:", email);
         try {
             //  Firebase Auth
             //     const userCredential = await auth.signInWithEmailAndPassword(auth, email, password)
@@ -32,7 +32,7 @@ export function UserProvider({ children }) {
     }
 
     async function register(email, password) {
-        logger.log("in function UserProvider.register() with e-mail: ", email);
+        logger.log("in function UserProvider.register() with e-mail:", email);
 
         try {
             // Firebase Auth
@@ -49,7 +49,7 @@ export function UserProvider({ children }) {
     }
 
     async function logout() {
-        logger.log("in function UserProvider.logout() with user: ", user);
+        logger.log("in function UserProvider.logout() with user:", user);
 
         // await account.deleteSession("current")
         setUser(null)
