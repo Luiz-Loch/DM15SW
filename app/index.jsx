@@ -12,7 +12,6 @@ export default function Home() {
     useEffect(() => {
         logger.info('in file: ./app/index.jsx');
         logger.info('in function: Home');
-        logger.info('Theme is: ', theme);
         logger.log('Home screen mounted');
     }, []);
 

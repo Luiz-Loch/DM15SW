@@ -18,7 +18,6 @@ export default function Login() {
     useEffect(() => {
         logger.info('in file: ./app/(auth)/login.jsx');
         logger.log('in function: Login');
-        logger.info('Theme is: ', theme);
         logger.log('Login screen mounted');
         logger.log('Current user is: ', user);
     }, []);

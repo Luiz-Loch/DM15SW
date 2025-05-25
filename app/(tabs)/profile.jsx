@@ -14,7 +14,6 @@ export default function Profile() {
     useEffect(() => {
         logger.info('in file: ./app/(tabs)/profile.jsx');
         logger.log('in function: Profile');
-        logger.info('Theme is: ', theme);
         logger.log('profile screen mounted');
         logger.log('Current user is: ', user);
     }, []);
@@ -33,7 +32,7 @@ export default function Profile() {
 
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: colorPalette.background }]}>
-            <Text style={[styles.title, { color: colorPalette.text }]}>Perfil</Text>
+            <Text style={[styles.pageTitle, { color: colorPalette.text }]}>Perfil</Text>
 
             <View style={styles.infoContainer}>
                 <Text style={[styles.infoText, { color: colorPalette.text }]}>Email:{"\t"}{user.email}</Text>
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 24,
     },
-    title: {
+    pageTitle: {
         fontSize: 32,
         fontWeight: 'bold',
         margin: 20,

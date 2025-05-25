@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Keyboard, SafeAreaView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View, useColorScheme } from 'react-native';
 import { Colors } from '../../scr/constants/Colors';
 import { useUser } from '../../scr/hooks/useUser';
@@ -19,7 +19,6 @@ export default function Register() {
     useEffect(() => {
         logger.info('in file: ./app/(auth)/register.jsx');
         logger.log('in function: Register');
-        logger.info('Theme is: ', theme);
         logger.log('Register screen mounted');
         logger.log('Current user is: ', user);
     }, []);

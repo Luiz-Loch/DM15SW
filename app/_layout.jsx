@@ -12,8 +12,7 @@ export default function RootLayout() {
 
   const theme = useColorScheme(); // 'light' ou 'dark'
   const colorPalette = Colors[theme || 'light'];
-
-  logger.info('Theme is: ', theme);
+  
   logger.log('RootLayout screen rendered');
   logger.log('Wrapping with UserProvider and PlantsProvider');
   logger.log('Initializing Stack with auth, tabs and index screens');

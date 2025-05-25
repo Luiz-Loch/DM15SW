@@ -13,7 +13,6 @@ export default function TabsLayout() {
     useEffect(() => {
         logger.info('in file: ./app/(auth)/_layout.jsx');
         logger.log('in function: AuthLayout');
-        logger.info('Theme is: ', theme);
         logger.log('AuthLayout screen rendered');
         logger.log('Auth stack initialized with login and register screens');
     }, []);
@@ -32,12 +31,18 @@ export default function TabsLayout() {
             }}
         >
             <Tabs.Screen
-                name="plants"
+                name="plants/index"
                 options={{
                     title: "Plantas",
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="leaf-outline" size={size} color={color} />
                     ),
+                }}
+            />
+            <Tabs.Screen
+                name="plants/[id]"
+                options={{
+                    href: null,
                 }}
             />
             <Tabs.Screen

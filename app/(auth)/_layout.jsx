@@ -13,7 +13,6 @@ export default function AuthLayout() {
     useEffect(() => {
         logger.info('in file: ./app/(auth)/_layout.jsx');
         logger.log('in function: AuthLayout');
-        logger.info('Theme is: ', theme);
         logger.log('AuthLayout screen rendered');
         logger.log('Auth stack initialized with login and register screens');
     }, []);
