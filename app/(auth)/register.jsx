@@ -20,7 +20,6 @@ export default function Register() {
         logger.info('in file: ./app/(auth)/register.jsx');
         logger.log('in function: Register');
         logger.log('Register screen mounted');
-        logger.log('Current user is: ', user);
     }, []);
 
     const handleSubmit = async () => {
@@ -54,7 +53,6 @@ export default function Register() {
             logger.log('Calling register()');
             await register(email, password);
             logger.info('Register successful');
-            logger.log('Current user is: ', user);
         } catch (error) {
             setError(error.message);
             logger.error('Login failed:', error.message);

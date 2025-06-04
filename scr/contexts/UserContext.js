@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from "react";
-
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createContext, useState } from "react";
+import { auth } from "../services/firebaseConfig";
 import { logger } from "../utils/logger";
 
 export const UserContext = createContext()
@@ -14,20 +15,16 @@ export function UserProvider({ children }) {
     async function login(email, password) {
         logger.log("in function UserProvider.login() with e-mail:", email);
         try {
-            //  Firebase Auth
-            //     const userCredential = await auth.signInWithEmailAndPassword(auth, email, password)
-            //     const user = userCredential.user
-            //     setUser(user)
-            // await account.createEmailPasswordSession(email, password)
-            // const response = await account.get()
-            const response = { id: 'fake-id', email }; // simulação temporária
-
-            setUser(response)
-            logger.info("Login successful", response);
+            // const response = await signInWithEmailAndPassword(auth, email, password);
+            // setUser(response._tokenResponse);
+            // logger.info("Login successful", response);
         } catch (error) {
             logger.error("Login failed:", error.message);
-            logger.debug('Login error object:', error);
+            logger.info('Login error object:', error);
             throw Error(error.message)
+        }
+        finally {
+            setUser({email: "test@test.com"})
         }
     }
 
@@ -35,10 +32,7 @@ export function UserProvider({ children }) {
         logger.log("in function UserProvider.register() with e-mail:", email);
 
         try {
-            // Firebase Auth
-            //     const userCredential = await auth.createUserWithEmailAndPassword(auth, email, password)
-            //     const user = userCredential.user
-            // await account.create(ID.unique(), email, password)
+            const response = await createUserWithEmailAndPassword(auth, email, password);
             logger.info("Register successful");
             await login(email, password)
         } catch (error) {
@@ -49,33 +43,11 @@ export function UserProvider({ children }) {
     }
 
     async function logout() {
-        logger.log("in function UserProvider.logout() with user:", user);
-
-        // await account.deleteSession("current")
+        logger.log("in function UserProvider.logout() with user:", user.email);
+        await signOut(auth);
         setUser(null)
         logger.info("Logout successful");
     }
-
-    async function getInitialUserValue() {
-        logger.log("in function UserProvider.getInicialUserValue()");
-
-        try {
-            // const res = await account.get()
-            logger.info("User session found on load:", res);
-            setUser(res)
-        } catch (error) {
-            setUser(null)
-            logger.warn("No user session found on load");
-        } finally {
-            setAuthChecked(true)
-            logger.log("Auth check completed");
-        }
-    }
-
-    useEffect(() => {
-        logger.log("UserProvider mounted, checking auth...");
-        getInitialUserValue()
-    }, [])
 
     return (
         <UserContext.Provider value={{

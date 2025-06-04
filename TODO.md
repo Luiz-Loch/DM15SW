@@ -15,24 +15,35 @@
             - [x] modo escuro
             - [x] logs
     - `(tabs)`:
+        - `plants`
+            - `index.jsx`:
+                - [x] modo claro;
+                - [x] modo escuro;
+                - [x] logs;
+                - [ ] apresentar as plantas
+                - [ ] adicionar plantas;
+                - [ ] redirecionar para editar;
+                - [ ] opção de excluir planta;
+            - `[id].jsx`:
+                - [ ] modo claro;
+                - [ ] modo escuro;
+                - [ ] logs;
+                - [ ] modificar as plantas;
         - `_layout.jsx`
             - [x] abas na parte inferior;
             - [x] modo claro;
             - [x] modo escuro;
             - [x] logs;
         - `calendar.jsx`
-            - [ ] modo claro;
-            - [ ] modo escuro;
-            - [ ] logs;
-        - `plants.jsx`
-            - [ ] modo claro;
-            - [ ] modo escuro;
-            - [ ] logs;
+            - [x] modo claro;
+            - [x] modo escuro;
+            - [x] logs;
+            - [ ] apresentar dados corretos;
         - `profile.jsx`
             - [x] modo claro;
             - [x] modo escuro;
             - [x] logs;
-            - [ ] logout funcional;
+            - [x] logout funcional;
     - `_layout.jsx`
         - [x] voltar de `login`;
         - [x] voltar de `cadastro`;
@@ -48,7 +59,10 @@
         - `PlantsContext.js`:
             - [ ] logs;
         - `UserContext.js`:
-            - [ ] logs;
+            - [x] logs;
+            - [x] login;
+            - [x] register;
+            - [x] logout;
     - `hooks`:
         - `usePlants.js`
             - [x] logs;

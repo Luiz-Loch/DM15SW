@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 import { useEffect } from 'react';
-import { Pressable, SafeAreaView, StyleSheet, Text, useColorScheme } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, useColorScheme } from 'react-native';
+import { MainButton } from '../scr/components/MainButton';
 import { Colors } from '../scr/constants/Colors';
 import { logger } from '../scr/utils/logger';
 
@@ -22,38 +23,25 @@ export default function Home() {
                 App de planta 🌱
             </Text>
 
-            <Pressable
+            <MainButton
+                text="Login"
                 onPress={() => {
                     logger.log('Navigating to /(auth)/login');
                     router.push('/(auth)/login')
                 }}
-                style={({ pressed }) => [
-                    styles.button,
-                    { backgroundColor: colorPalette.primary },
-                    pressed && styles.buttonPressed,
-                ]}
-            >
-                <Text style={[styles.buttonText, { color: colorPalette.buttonText }]}>
-                    Login
-                </Text>
-            </Pressable>
+                color={colorPalette.primary}
+            />
 
-            <Pressable
+            <MainButton
+                text="Criar conta"
                 onPress={() => {
                     logger.log('Navigating to /(auth)/register');
                     router.push('/(auth)/register')
                 }}
-                style={({ pressed }) => [
-                    styles.button,
-                    { backgroundColor: colorPalette.secondary },
-                    pressed && styles.buttonPressed,
-                ]}
-            >
-                <Text style={[styles.buttonText, { color: colorPalette.buttonText }]}>
-                    Criar conta
-                </Text>
-            </Pressable>
-        </SafeAreaView>
+                color={colorPalette.secondary}
+            />
+
+        </SafeAreaView >
     );
 }
 
@@ -69,24 +57,5 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         textAlign: 'center',
         marginBottom: 40,
-    },
-    button: {
-        width: '80%',
-        paddingVertical: 14,
-        borderRadius: 12,
-        marginVertical: 10,
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 3, // Android fallback
-    },
-    buttonPressed: {
-        opacity: 0.8,
-    },
-    buttonText: {
-        fontSize: 17,
-        fontWeight: '500',
     },
 });

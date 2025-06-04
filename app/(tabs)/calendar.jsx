@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import { SafeAreaView, StyleSheet, useColorScheme, View } from 'react-native';
 import { Calendar } from 'react-native-calendars';
+import { MainTitle } from '../../scr/components/MainTitle';
 import { Colors } from '../../scr/constants/Colors';
 import { useUser } from '../../scr/hooks/useUser';
 import { logger } from '../../scr/utils/logger';
@@ -25,13 +26,12 @@ export default function CalendarScreen() {
         logger.info('in file: ./app/(tabs)/calendar.jsx');
         logger.log('in function: CalendarScreen');
         logger.log('Calendar screen mounted');
-        logger.log('Current user is: ', user);
     }, []);
 
 
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: colorPalette.background }]}>
-            <Text style={[styles.pageTitle, { color: colorPalette.text }]}>Agenda</Text>
+            <MainTitle title="Agenda" />
 
             <View style={styles.calendarWrapper}>
                 <Calendar
@@ -56,12 +56,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 24,
-    },
-    pageTitle: {
-        fontSize: 32,
-        fontWeight: 'bold',
-        margin: 20,
-        marginBottom: 40,
     },
     calendarWrapper: {
         borderRadius: 10,

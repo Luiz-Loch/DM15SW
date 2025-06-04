@@ -19,7 +19,6 @@ export default function Login() {
         logger.info('in file: ./app/(auth)/login.jsx');
         logger.log('in function: Login');
         logger.log('Login screen mounted');
-        logger.log('Current user is: ', user);
     }, []);
 
     const handleSubmit = async () => {
@@ -32,7 +31,6 @@ export default function Login() {
             logger.log('Calling login()');
             await login(email, password);
             logger.info('Login successful');
-            logger.log('Current user is: ', user);
             router.replace('/(tabs)/plants');
         } catch (error) {
             setError(error.message)
