@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View, useColorScheme } from "react-native";
 import { Colors } from '../constants/Colors';
+import { logger } from '../utils/logger';
 
 export function PlantCard({
     plant,
@@ -14,13 +15,10 @@ export function PlantCard({
     const theme = useColorScheme();
     const colorPalette = Colors[theme || 'light'];
 
-    if (plant.watered.length > 0) {
-        const lastWatered = plant.watered[plant.watered.length - 1];
-        const wasWateredToday = isToday(new Date(lastWatered));
-    }
-    else {
-        var wasWateredToday = false;
-    }
+    const lastWatered = plant.watered[plant.watered.length - 1];
+    logger.log('Last watered date:', lastWatered);
+    const wasWateredToday = isToday(new Date(lastWatered));
+    logger.log('Was watered today:', wasWateredToday);
 
     if (plant.warning.length > 0) {
         const lastWarning = plant.warning[plant.warning.length - 1].date;

@@ -1,7 +1,7 @@
 import { Picker } from '@react-native-picker/picker';
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, TextInput, useColorScheme, View } from 'react-native';
+import { Keyboard, SafeAreaView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, useColorScheme, View } from 'react-native';
 import { FooterButton } from '../../../scr/components/FooterButton';
 import { MainTitle } from '../../../scr/components/MainTitle';
 import { Colors } from '../../../scr/constants/Colors';
@@ -24,50 +24,71 @@ export default function EditPlant() {
         logger.log('edit plant screen mounted');
     }, []);
 
+    function handleSave() {
+        logger.log('In function: EditPlant.handleSave');
+        logger.log('Editing plant with id:', id);
+        logger.log('New name:', name);
+        logger.log('New description:', description);
+        logger.log('New sun value:', sun);
+
+        if (!name) {
+            logger.error('Name is required');
+            return;
+        }
+
+        editPlant(id, name, description, sun);
+        logger.info('Plant edited successfully');
+        router.back();
+    }
+
+
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: colorPalette.background }]}>
-            <MainTitle title="Editar Planta" />
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                <View style={{ flex: 1 }}>
+                    <MainTitle title="Editar Planta" />
 
-            <View style={styles.form}>
-                <Text style={[styles.label, { color: colorPalette.text }]}>Nome</Text>
-                <TextInput
-                    style={[styles.input, { backgroundColor: colorPalette.inputBackground, color: colorPalette.text }]}
-                    placeholder="Ex: Zamioculca"
-                    placeholderTextColor={colorPalette.placeholder}
-                    value={name}
-                    onChangeText={setName}
-                />
+                    <View style={styles.form}>
+                        <Text style={[styles.label, { color: colorPalette.text }]}>Nome</Text>
+                        <TextInput
+                            style={[styles.input, { backgroundColor: colorPalette.inputBackground, color: colorPalette.text }]}
+                            placeholder="Ex: Zamioculca"
+                            placeholderTextColor={colorPalette.placeholder}
+                            value={name}
+                            onChangeText={setName}
+                        />
 
-                <Text style={[styles.label, { color: colorPalette.text }]}>Descrição</Text>
-                <TextInput
-                    style={[styles.input, { backgroundColor: colorPalette.inputBackground, color: colorPalette.text }]}
-                    placeholder="Ex: Planta resistente à sombra"
-                    placeholderTextColor={colorPalette.placeholder}
-                    value={description}
-                    onChangeText={setDescription}
-                    multiline
-                />
+                        <Text style={[styles.label, { color: colorPalette.text }]}>Descrição</Text>
+                        <TextInput
+                            style={[styles.input, { backgroundColor: colorPalette.inputBackground, color: colorPalette.text }]}
+                            placeholder="Ex: Planta resistente à sombra"
+                            placeholderTextColor={colorPalette.placeholder}
+                            value={description}
+                            onChangeText={setDescription}
+                            multiline
+                        />
 
-                <Text style={[styles.label, { color: colorPalette.text }]}>Sol</Text>
-                <Picker
-                    selectedValue={sun}
-                    onValueChange={setSun}
-                    style={{ color: colorPalette.text }}
-                >
-                    <Picker.Item label="Pouco sol" value="low" />
-                    <Picker.Item label="Sol médio" value="medium" />
-                    <Picker.Item label="Muito sol" value="high" />
-                </Picker>
-            </View>
+                        <Text style={[styles.label, { color: colorPalette.text }]}>Sol</Text>
+                        <Picker
+                            selectedValue={sun}
+                            onValueChange={setSun}
+                            style={{ color: colorPalette.text }}
+                        >
+                            <Picker.Item label="Pouco sol" value="low" />
+                            <Picker.Item label="Sol médio" value="medium" />
+                            <Picker.Item label="Muito sol" value="high" />
+                        </Picker>
+                    </View>
 
-            <FooterButton
-                text="Salvar"
-                onPress={() => {
-                    // Implement save logic here
-                    logger.log('Save button pressed for plant with id:', id);
-                }}
-                color={colorPalette.primary}
-            />
+                    <FooterButton
+                        text="Salvar"
+                        onPress={() => {
+                            handleSave();
+                        }}
+                        color={colorPalette.primary}
+                    />
+                </View>
+            </TouchableWithoutFeedback>
         </SafeAreaView>
     );
 }

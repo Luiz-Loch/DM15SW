@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Button, Keyboard, SafeAreaView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View, useColorScheme } from 'react-native';
 import { Colors } from '../../scr/constants/Colors';
@@ -11,7 +12,7 @@ export default function Register() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState(null);
 
-    const { user, register } = useUser();
+    const { register, login } = useUser();
     const theme = useColorScheme();
     const colorPalette = Colors[theme || 'light'];
 

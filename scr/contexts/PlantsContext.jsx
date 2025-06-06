@@ -111,7 +111,7 @@ export function PlantsProvider({ children }) {
         );
     }
 
-    function addPlant(name, description) {
+    function addPlant(name, description, sun = 'low') {
         logger.log("in function PlantProvider.addPlant()");
         setPlants(oldState => {
             return [
@@ -124,7 +124,7 @@ export function PlantsProvider({ children }) {
                     description: description,
                     image: '',
                     watered: [],
-                    sun: 'low', // default value
+                    sun: sun,
                     warning: [],
                     favorite: false,
                 }
@@ -132,9 +132,9 @@ export function PlantsProvider({ children }) {
         });
     }
 
-    function editPlant(id, name, description) {
+    function editPlant(id, name, description, sun) {
         logger.log("in function PlantProvider.editPlant()");
-        _updatePlant(id, { name, description });
+        _updatePlant(id, { name, description, sun });
     }
 
     function deletePlant(id) {
