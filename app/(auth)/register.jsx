@@ -53,6 +53,9 @@ export default function Register() {
             logger.log('Calling register()');
             await register(email, password);
             logger.info('Register successful');
+            await login(email, password);
+            logger.info('Login successful after registration');
+            router.replace('/(tabs)/plants');
         } catch (error) {
             setError(error.message);
             logger.error('Login failed:', error.message);

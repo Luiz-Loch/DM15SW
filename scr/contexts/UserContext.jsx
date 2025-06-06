@@ -31,7 +31,6 @@ export function UserProvider({ children }) {
         try {
             const response = await createUserWithEmailAndPassword(auth, email, password);
             logger.info("Register successful");
-            await login(email, password)
         } catch (error) {
             logger.error("Register failed:", error.message);
             logger.debug('Register error object:', error);
