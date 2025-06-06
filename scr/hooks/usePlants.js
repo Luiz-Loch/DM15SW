@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { PlantsContext } from "../contexts/BooksContext";
+import { PlantsContext } from "../contexts/PlantsContext";
 import { logger } from "../utils/logger";
 
 export function usePlants() {

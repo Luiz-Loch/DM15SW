@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import { MainButton } from "../MainButton";
+import { MainButton } from "./MainButton";
 
 export function FooterButton({ text, onPress, color }) {
     return (

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, useColorScheme, View } from 'react-native';
-import { Colors } from '../../constants/Colors';
+import { Colors } from '../constants/Colors';
 
 export function MainTitle({ title }) {
     const theme = useColorScheme();

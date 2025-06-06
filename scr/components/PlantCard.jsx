@@ -1,22 +1,59 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View, useColorScheme } from "react-native";
-import { Colors } from '../../constants/Colors';
+import { Colors } from '../constants/Colors';
 
-export function PlantCard({ plant, onEdit, onDelete }) {
+export function PlantCard({
+    plant,
+    onEdit,
+    onDelete,
+    onWaterPress,
+    onSunPress,
+    onWarningPress,
+    onHeartPress,
+}) {
     const theme = useColorScheme();
     const colorPalette = Colors[theme || 'light'];
 
+    if (plant.watered.length > 0) {
+        const lastWatered = plant.watered[plant.watered.length - 1];
+        const wasWateredToday = isToday(new Date(lastWatered));
+    }
+    else {
+        var wasWateredToday = false;
+    }
+
+    if (plant.warning.length > 0) {
+        const lastWarning = plant.warning[plant.warning.length - 1].date;
+        const wasWarnedToday = isToday(new Date(lastWarning));
+    }
+    else {
+        var wasWarnedToday = false;
+    }
+
+    function isToday(date) {
+        const today = new Date();
+
+        return (
+            date.getDate() === today.getDate() &&
+            date.getMonth() === today.getMonth() &&
+            date.getFullYear() === today.getFullYear()
+        );
+    }
+
     return (
         <View style={[styles.card, { backgroundColor: colorPalette.card }]}>
-            <Image source={{ uri: plant.image }} style={styles.image} />\
+            <Image source={{ uri: plant.image }} style={styles.image} />
 
             <View style={styles.info}>
                 <View style={styles.header}>
                     <View style={styles.textSection}>
                         <Text style={[styles.name, { color: colorPalette.text }]}>{plant.name}</Text>
-                        <Text style={[styles.subtext, { color: colorPalette.text }]}>
-                            Regada {plant.lastWatered}
-                        </Text>
+
+                        {plant.watered.length > 0 && (
+                            <Text style={[styles.subtext, { color: colorPalette.text }]}>
+                                Regada {new Date(plant.watered[plant.watered.length - 1]).toLocaleDateString('pt-BR')}
+                            </Text>
+                        )}
                     </View>
 
                     <View style={styles.actions}>
@@ -38,27 +75,47 @@ export function PlantCard({ plant, onEdit, onDelete }) {
 
                 <View style={styles.icons}>
                     <Pressable
-                        onPress={() => console.log('water')}
+                        onPress={() => onWaterPress(plant)}
                         style={({ pressed }) => [pressed && styles.buttonPressed]}
                     >
-                        <Ionicons name="water-outline" size={18} color={colorPalette.text} />
+                        <Ionicons
+                            name={wasWateredToday ? 'water' : 'water-outline'}
+                            size={18}
+                            color={wasWateredToday ? '#4da6ff' : colorPalette.text}
+                        />
                     </Pressable>
                     <Pressable
-                        onPress={() => console.log('sunny')}
+                        onPress={() => onSunPress(plant)}
                         style={({ pressed }) => [pressed && styles.buttonPressed]}
                     >
-                        <Ionicons name="sunny-outline" size={18} color={colorPalette.text} />
+                        <Ionicons
+                            name={'sunny'}
+                            size={18}
+                            color={
+                                plant.sun === 'low' ? '#cccc00' :
+                                    plant.sun === 'medium' ? '#ffaa00' :
+                                        '#ff8000' // high
+                            }
+                        />
                     </Pressable>
                     <Pressable
-                        onPress={() => console.log('warning')}
+                        onPress={() => onWarningPress(plant)}
                         style={({ pressed }) => [pressed && styles.buttonPressed]}
                     >
-                        <Ionicons name="warning-outline" size={18} color={colorPalette.text} />
+                        <Ionicons
+                            name={wasWarnedToday ? 'warning' : 'warning-outline'}
+                            size={18}
+                            color={wasWarnedToday ? '#ff6b6b' : colorPalette.text}
+                        />
                     </Pressable>
                     <Pressable
-                        onPress={() => console.log('heart')}
+                        onPress={() => onHeartPress(plant)}
                         style={({ pressed }) => [pressed && styles.buttonPressed]}>
-                        <Ionicons name="heart-outline" size={18} color={colorPalette.text} />
+                        <Ionicons
+                            name={plant.favorite ? 'heart' : 'heart-outline'}
+                            size={18}
+                            color={plant.favorite ? '#ff5b8c' : colorPalette.text}
+                        />
                     </Pressable>
                 </View>
             </View>

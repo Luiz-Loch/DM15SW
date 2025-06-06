@@ -31,7 +31,7 @@ export default function TabsLayout() {
             }}
         >
             <Tabs.Screen
-                name="plants/index"
+                name="plants"
                 options={{
                     title: "Plantas",
                     tabBarIcon: ({ color, size }) => (
@@ -41,6 +41,12 @@ export default function TabsLayout() {
             />
             <Tabs.Screen
                 name="plants/[id]"
+                options={{
+                    href: null,
+                }}
+            />
+            <Tabs.Screen
+                name="plants/add"
                 options={{
                     href: null,
                 }}

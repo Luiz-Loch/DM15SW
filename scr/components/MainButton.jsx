@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, useColorScheme } from "react-native";
-import { Colors } from "../../constants/Colors";
+import { Colors } from "../constants/Colors";
 
 export function MainButton({ text, onPress, color }) {
     const theme = useColorScheme(); // 'light' ou 'dark'

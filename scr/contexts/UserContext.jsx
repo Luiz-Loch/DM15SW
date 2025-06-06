@@ -15,16 +15,13 @@ export function UserProvider({ children }) {
     async function login(email, password) {
         logger.log("in function UserProvider.login() with e-mail:", email);
         try {
-            // const response = await signInWithEmailAndPassword(auth, email, password);
-            // setUser(response._tokenResponse);
-            // logger.info("Login successful", response);
+            const response = await signInWithEmailAndPassword(auth, email, password);
+            setUser(response.user);
+            logger.info("Login successful", response);
         } catch (error) {
             logger.error("Login failed:", error.message);
             logger.info('Login error object:', error);
-            throw Error(error.message)
-        }
-        finally {
-            setUser({email: "test@test.com"})
+            throw Error(error.message);
         }
     }
 

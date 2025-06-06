@@ -1,5 +1,5 @@
 import { Picker } from '@react-native-picker/picker';
-import { useLocalSearchParams } from 'expo-router';
+import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, TextInput, useColorScheme, View } from 'react-native';
 import { FooterButton } from '../../../scr/components/FooterButton';
@@ -8,25 +8,40 @@ import { Colors } from '../../../scr/constants/Colors';
 import { usePlants } from '../../../scr/hooks/usePlants';
 import { logger } from '../../../scr/utils/logger';
 
-export default function EditPlant() {
-    const { id } = useLocalSearchParams();
-    const { plants, editPlant } = usePlants();
+export default function AddPlant() {
+    const { addPlant } = usePlants();
     const theme = useColorScheme();
     const colorPalette = Colors[theme || 'light'];
-    const [name, setName] = useState(plants.find(plant => plant.id === id)?.name || '');
-    const [description, setDescription] = useState(plants.find(plant => plant.id === id)?.description || '');
-    const [sun, setSun] = useState(plants.find(plant => plant.id === id)?.sun || 'low');
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [sun, setSun] = useState('low');
 
     // Inicial log when mounting the screen
     useEffect(() => {
-        logger.info('in file: ./app/(tabs)/plants/[id].jsx');
-        logger.log('in function: EditPlant');
-        logger.log('edit plant screen mounted');
+        logger.info('in file: ./app/(tabs)/plants/add.jsx');
+        logger.log('in function: AddPlant');
+        logger.log('add plant screen mounted');
     }, []);
+
+    function handleAddPlant() {
+        if (!name.trim()) {
+            alert('Nome da planta é obrigatório!');
+            return;
+        }
+
+        addPlant(name, description, sun);
+
+        setName('');
+        setDescription('');
+        setSun('low');
+        logger.log(`Plant with name "${name}" added with description "${description}" and sun level "${sun}"`);
+
+        router.back();
+    }
 
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: colorPalette.background }]}>
-            <MainTitle title="Editar Planta" />
+            <MainTitle title="Criar planta" />
 
             <View style={styles.form}>
                 <Text style={[styles.label, { color: colorPalette.text }]}>Nome</Text>
@@ -61,10 +76,9 @@ export default function EditPlant() {
             </View>
 
             <FooterButton
-                text="Salvar"
+                text="Criar planta"
                 onPress={() => {
-                    // Implement save logic here
-                    logger.log('Save button pressed for plant with id:', id);
+                    handleAddPlant();
                 }}
                 color={colorPalette.primary}
             />
