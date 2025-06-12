@@ -33,13 +33,16 @@ Para iniciar o aplicativo, siga os passos abaixo:
 ├── app
 │   ├── (auth)
 │   └── (tabs)
+│       └── plants
 └── scr
     ├── assets
     │   ├── fonts
     │   └── images
+    ├── components
     ├── constants
     ├── contexts
     ├── hooks
+    ├── services
     └── utils
 ```
 ### Descrição da Estrutura
